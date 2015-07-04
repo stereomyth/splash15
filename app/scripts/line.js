@@ -5,4 +5,12 @@ var Line = function (parent, x, y) {
 
 	this.grid = parent;
 	
+
+Line.prototype.place = function () {
+
+	if (this.grid.query(this.pos)) {
+		this.grid.mark(this.pos, 'x');
+	}
+
+};
 };
