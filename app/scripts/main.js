@@ -3,16 +3,16 @@
 
 var splash = {
 
-	init: function () {
+  init: function () {
 
-		var grid = new Grid();
+    var grid = new Grid();
 
-		var line = new Line(grid);
-		var line2 = new Line(grid, {x: 5, y: 5});
+    var line = new Line(grid);
+    var line2 = new Line(grid, {x: 5, y: 5});
 
-		grid.print();
+    grid.print();
 
-	}
+  }
 
 };
 
