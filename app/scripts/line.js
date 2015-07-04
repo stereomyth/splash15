@@ -10,7 +10,7 @@ var Line = function (parent, pos) {
   
   this.place();
 
-  for (var i = 0; i < 2; i++) {
+  for (var i = 0; i < 50; i++) {
     if (this.mobile) {
       this.move();
     }
