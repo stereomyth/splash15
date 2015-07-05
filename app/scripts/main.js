@@ -13,11 +13,12 @@ var Splash = function () {
 };
 
 Splash.prototype.init = function(first_argument) {
+
+  this.getDimensions();
+
   var grid = new Grid(this.width,this.height);
 
   this.lines = [];
-
-  // this.lines.push(new Line(grid, {x: 5, y: 5}));
 
   var mid = Math.round(this.width / 2) - Math.floor(this.lineNum / 4);
   var mid2 = Math.round(this.height / 2);
@@ -35,9 +36,31 @@ Splash.prototype.init = function(first_argument) {
     this.tick();
   }
 
-  grid.print();
+  // grid.print();
   this.draw();
   
+};
+
+Splash.prototype.getDimensions = function () {
+
+  var getDiag = function (a, b) {
+    return Math.round(Math.sqrt(a*a + b*b));
+  };
+
+  var win = {
+    width: $(window).width(),
+    height: $(window).height(),
+  };
+
+  win.diag = getDiag(win.width, win.height);
+
+  $('.hole').css({
+    'height': win.diag, 
+    'width': win.diag, 
+    'margin-left': - win.diag / 2,
+    'margin-top': - (win.diag - win.height) / 2
+  });
+
 };
 
 Splash.prototype.tick = function () {
@@ -50,9 +73,15 @@ Splash.prototype.tick = function () {
 
 Splash.prototype.draw = function () {
 
+  var hole = {
+    height: $('.hole').height(),
+    width: $('.hole').width(),
+    padding: 50
+  };
+
   var svg = d3.select('.hole').append('svg')
-    .attr('height', '500')
-    .attr('width', '500')
+    .attr('height', hole.height)
+    .attr('width', hole.width)
     .append('g')
       .attr('transform', 'translate(50,50)')
   ;
@@ -66,11 +95,11 @@ Splash.prototype.draw = function () {
 
     x: d3.scale.linear()
       .domain([0, this.width - 1])
-      .rangeRound([0,400]),
+      .rangeRound([0, hole.width - hole.padding * 2]),
 
     y: d3.scale.linear()
       .domain([0, this.height - 1])
-      .rangeRound([0,400])
+      .rangeRound([0, hole.height - hole.padding * 2])
 
   };
 

@@ -2,6 +2,8 @@
 	"globalstrict": true,
 	"globals": {
 		"d3": true,
-		"console": true
+		"console": true,
+		"$": true,
+		"window": true
 	}
 }
