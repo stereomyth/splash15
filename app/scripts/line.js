@@ -9,12 +9,6 @@ var Line = function (parent, pos) {
   this.mobile = false;
   
   this.place();
-
-  for (var i = 0; i < 50; i++) {
-    if (this.mobile) {
-      this.move();
-    }
-  }
 };
 
 Line.prototype.place = function () {
@@ -40,7 +34,7 @@ Line.prototype.move = function () {
     this.history.push(destination);
     
   } else {
-    console.log('no where to go');
+    // console.log('no where to go');
 
     this.mobile = false;
 
