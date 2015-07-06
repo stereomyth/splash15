@@ -102,14 +102,30 @@ Splash.prototype.draw = function () {
       .rangeRound([0, hole.height - hole.padding * 2])
 
   };
-
-  svg.selectAll('path').data(this.lines)
+  
+  var paths = svg.selectAll('path').data(this.lines)
     .enter()
       .append('path')
         .attr('stroke-linecap', 'square')
         .attr('d', function (d) { return lineMath(d.history); })
-
   ;
+
+  for (var i = 0; i < paths[0].length; i++) {
+    this.lines[i].pathLength = paths[0][i].getTotalLength() + 10;
+  }
+
+  paths
+    .attr("stroke-dasharray", function (d) {return d.pathLength + " " + d.pathLength; })
+    .attr("stroke-dashoffset", function (d) {return d.pathLength;});
+
+  window.setTimeout(function () {
+    paths
+      .transition()
+        .duration(4000)
+        // .ease("linear")
+        .attr("stroke-dashoffset", 0);
+  }, 2000);
+
 };
 
 var splash = new Splash();
