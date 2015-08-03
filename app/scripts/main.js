@@ -3,8 +3,8 @@
 
 var Splash = function () {
 
-  this.height = 20;
-  this.width = 20;
+  this.height = 0;
+  this.width = 0;
 
   this.lineNum = 16;
 
@@ -32,7 +32,7 @@ Splash.prototype.init = function(first_argument) {
   }
 
 
-  for (i = 0; i < 150; i++) {
+  for (i = 0; i < 250; i++) {
     this.tick();
   }
 
@@ -60,6 +60,9 @@ Splash.prototype.getDimensions = function () {
     'margin-left': - win.diag / 2,
     'margin-top': - (win.diag - win.height) / 2
   });
+
+  this.height = win.diag / 30;
+  this.width = win.diag / 30;
 
 };
 
@@ -107,6 +110,7 @@ Splash.prototype.draw = function () {
     .enter()
       .append('path')
         .attr('stroke-linecap', 'square')
+        .attr('stroke-width', 12)
         .attr('d', function (d) { return lineMath(d.history); })
   ;
 
