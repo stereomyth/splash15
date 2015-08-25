@@ -47,22 +47,22 @@ Splash.prototype.getDimensions = function () {
     return Math.round(Math.sqrt(a * a + b * b));
   };
 
-  var win = {
+  this.win = {
     width: $(window).width(),
-    height: $(window).height(),
+    height: $(window).height()
   };
 
-  win.diag = getDiag(win.width, win.height);
+  this.win.diag = getDiag(this.win.width, this.win.height);
 
   $('.hole').css({
-    'height': win.diag, 
-    'width': win.diag, 
-    'margin-left': - win.diag / 2,
-    'margin-top': - (win.diag - win.height) / 2
+    'height': this.win.diag,
+    'width': this.win.diag,
+    'margin-left': -this.win.diag / 2,
+    'margin-top': -(this.win.diag - this.win.height) / 2
   });
 
-  this.height = win.diag / 30;
-  this.width = win.diag / 30;
+  this.height = this.win.diag / 30;
+  this.width = this.win.diag / 30;
 
 };
 
