@@ -64,8 +64,7 @@ Grid.prototype.query = function (pos) {
 };
 
 Grid.prototype.empty = function (pos) {
-  if (pos.x < this.width && pos.x >= 0 && pos.y < this.height && pos.y >= 0 && 
-    this.data[pos.y][pos.x] === ' ') {
+  if (pos.x < this.width && pos.x >= 0 && pos.y < this.height && pos.y >= 0 && this.data[pos.y][pos.x] === ' ') {
 
     return true;
 

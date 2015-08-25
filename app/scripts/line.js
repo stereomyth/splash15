@@ -1,13 +1,13 @@
 'use strict';
 
 var Line = function (parent, pos) {
-  this.pos = pos || {x: 0, y:0};
+  this.pos = pos || {x: 0, y: 0};
   this.pos.dir = 'origin';
 
   this.grid = parent;
   this.history = [];
   this.mobile = false;
-  
+
   this.place();
 };
 
@@ -32,7 +32,7 @@ Line.prototype.move = function () {
     this.pos = destination;
     this.grid.mark(destination);
     this.history.push(destination);
-    
+
   } else {
     // console.log('no where to go');
 

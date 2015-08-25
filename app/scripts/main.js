@@ -1,5 +1,5 @@
 'use strict';
-/* globals Grid, Line */
+/* globals Grid, Line, $, d3 */
 
 var Splash = function () {
 
@@ -8,15 +8,15 @@ var Splash = function () {
 
   this.lineNum = 16;
 
-  this.init();
+  // this.init();
 
 };
 
-Splash.prototype.init = function(first_argument) {
+Splash.prototype.init = function () {
 
   this.getDimensions();
 
-  var grid = new Grid(this.width,this.height);
+  var grid = new Grid(this.width, this.height);
 
   this.lines = [];
 
@@ -28,7 +28,7 @@ Splash.prototype.init = function(first_argument) {
   }
 
   for (i = 0; i < this.lineNum / 2; i++) {
-    this.lines.push(new Line(grid, {x: mid + i, y: mid2 -1}));
+    this.lines.push(new Line(grid, {x: mid + i, y: mid2 - 1}));
   }
 
 
@@ -38,13 +38,13 @@ Splash.prototype.init = function(first_argument) {
 
   // grid.print();
   this.draw();
-  
+
 };
 
 Splash.prototype.getDimensions = function () {
 
   var getDiag = function (a, b) {
-    return Math.round(Math.sqrt(a*a + b*b));
+    return Math.round(Math.sqrt(a * a + b * b));
   };
 
   var win = {
@@ -89,11 +89,6 @@ Splash.prototype.draw = function () {
       .attr('transform', 'translate(50,50)')
   ;
 
-  var lineMath = d3.svg.line()
-      .x(function(d) { return scale.x(d.x); })
-      .y(function(d) { return scale.y(d.y); })
-  ;
-
   var scale = {
 
     x: d3.scale.linear()
@@ -105,7 +100,12 @@ Splash.prototype.draw = function () {
       .rangeRound([0, hole.height - hole.padding * 2])
 
   };
-  
+
+  var lineMath = d3.svg.line()
+    .x(function(d) { return scale.x(d.x); })
+    .y(function(d) { return scale.y(d.y); })
+  ;
+
   var paths = svg.selectAll('path').data(this.lines)
     .enter()
       .append('path')
@@ -119,17 +119,20 @@ Splash.prototype.draw = function () {
   }
 
   paths
-    .attr("stroke-dasharray", function (d) {return d.pathLength + " " + d.pathLength; })
-    .attr("stroke-dashoffset", function (d) {return d.pathLength;});
+    .attr('stroke-dasharray', function (d) { return d.pathLength + ' ' + d.pathLength; })
+    .attr('stroke-dashoffset', function (d) { return d.pathLength; });
 
   window.setTimeout(function () {
     paths
       .transition()
         .duration(4000)
-        // .ease("linear")
-        .attr("stroke-dashoffset", 0);
+        .delay(function(d, index) { return index * 100; })
+        .ease('linear')
+        .attr('stroke-dashoffset', 0);
   }, 2000);
 
 };
 
 var splash = new Splash();
+
+splash.init();
