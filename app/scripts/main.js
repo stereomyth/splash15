@@ -74,6 +74,14 @@ Splash.prototype.tick = function () {
 
 };
 
+Splash.prototype.timer = function () {
+
+  window.setInterval(function () {
+
+  }, 100);
+
+};
+
 Splash.prototype.draw = function () {
 
   var hole = {
