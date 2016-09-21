@@ -29,7 +29,9 @@ $inner-offset: 30px;
   line-height: $disc;
   font-size: $disc / 4.5;
   border-radius: 50%;
-  font-family: "lust-script-1","lust-script-2";
+  text-rendering: optimizeLegibility;
+  // color: #333333;
+  // font-family: "lust-script-1","lust-script-2";
 
   .ring {
     width: $disc - $inner-offset;
