@@ -1,7 +1,7 @@
 $icon-font-path: '../fonts/';
 
 // bower:scss
-@import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+@import 'bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss';
 // endbower
 
 .browserupgrade {
@@ -47,15 +47,25 @@ $inner-offset: 30px;
   }
 
   &:hover {
-    .ring1 { transform-origin: 49% 49%;}
-    .ring2 { transform-origin: 51% 49%;}
-    .ring3 { transform-origin: 50% 51%;}
+    .ring1 {
+      transform-origin: 49% 49%;
+    }
+    .ring2 {
+      transform-origin: 51% 49%;
+    }
+    .ring3 {
+      transform-origin: 50% 51%;
+    }
   }
 }
 
-@keyframes spin { 
-  from { transform: rotate(0deg) } 
-  to { transform: rotate(360deg) }  
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .contain {

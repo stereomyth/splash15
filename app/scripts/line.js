@@ -1,7 +1,7 @@
 'use strict';
 
-var Line = function (parent, pos) {
-  this.pos = pos || {x: 0, y: 0};
+var Line = function(parent, pos) {
+  this.pos = pos || { x: 0, y: 0 };
   this.pos.dir = 'origin';
 
   this.grid = parent;
@@ -11,8 +11,7 @@ var Line = function (parent, pos) {
   this.place();
 };
 
-Line.prototype.place = function () {
-
+Line.prototype.place = function() {
   if (this.grid.query(this.pos) === true) {
     this.grid.mark(this.pos);
     this.history.push(this.pos);
@@ -20,10 +19,9 @@ Line.prototype.place = function () {
   } else {
     console.log('not placed');
   }
-
 };
 
-Line.prototype.move = function () {
+Line.prototype.move = function() {
   var spots = this.grid.query(this.pos);
 
   if (spots.length > 0) {
@@ -32,7 +30,6 @@ Line.prototype.move = function () {
     this.pos = destination;
     this.grid.mark(destination);
     this.history.push(destination);
-
   } else {
     // console.log('no where to go');
 
@@ -44,7 +41,7 @@ Line.prototype.move = function () {
   }
 };
 
-Line.prototype.rand = function (max, min) {
+Line.prototype.rand = function(max, min) {
   // min (inclusive) and max (exclusive)
   // probably need better random function;
   min = min || 0;

@@ -1,7 +1,6 @@
 'use strict';
 
-var Grid = function (width, height) {
-
+var Grid = function(width, height) {
   this.width = width || 10;
   this.height = height || 10;
 
@@ -9,7 +8,6 @@ var Grid = function (width, height) {
 
   this.build();
   // this.print();
-
 };
 
 Grid.prototype.build = function() {
@@ -23,7 +21,8 @@ Grid.prototype.build = function() {
 };
 
 Grid.prototype.print = function() {
-  var line, output = '';
+  var line,
+    output = '';
 
   for (var y = 0; y < this.height; y++) {
     line = '';
@@ -38,18 +37,18 @@ Grid.prototype.print = function() {
   console.log(output);
 };
 
-Grid.prototype.query = function (pos) {
-  var options, output = [];
+Grid.prototype.query = function(pos) {
+  var options,
+    output = [];
 
   if (this.empty(pos)) {
     return true;
   } else {
-
     options = [
-      {x: pos.x, y: pos.y - 1, dir: 'north'},
-      {x: pos.x + 1, y: pos.y, dir: 'east'},
-      {x: pos.x, y: pos.y + 1, dir: 'south'},
-      {x: pos.x - 1, y: pos.y, dir: 'west'}
+      { x: pos.x, y: pos.y - 1, dir: 'north' },
+      { x: pos.x + 1, y: pos.y, dir: 'east' },
+      { x: pos.x, y: pos.y + 1, dir: 'south' },
+      { x: pos.x - 1, y: pos.y, dir: 'west' },
     ];
 
     for (var i = 0; i < options.length; i++) {
@@ -57,23 +56,26 @@ Grid.prototype.query = function (pos) {
         output.push(options[i]);
       }
     }
-
   }
 
   return output;
 };
 
-Grid.prototype.empty = function (pos) {
-  if (pos.x < this.width && pos.x >= 0 && pos.y < this.height && pos.y >= 0 && this.data[pos.y][pos.x] === ' ') {
-
+Grid.prototype.empty = function(pos) {
+  if (
+    pos.x < this.width &&
+    pos.x >= 0 &&
+    pos.y < this.height &&
+    pos.y >= 0 &&
+    this.data[pos.y][pos.x] === ' '
+  ) {
     return true;
-
   } else {
     return false;
   }
 };
 
-Grid.prototype.mark = function (pos) {
+Grid.prototype.mark = function(pos) {
   var mark;
 
   switch (pos.dir) {
@@ -100,5 +102,4 @@ Grid.prototype.mark = function (pos) {
   }
 
   this.data[pos.y][pos.x] = mark;
-
 };
