@@ -1,7 +1,4 @@
-$icon-font-path: '../fonts/';
-
 // bower:scss
-@import 'bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss';
 // endbower
 
 .browserupgrade {
@@ -13,6 +10,11 @@ $icon-font-path: '../fonts/';
 
 $disc: 240px;
 $inner-offset: 30px;
+
+body {
+  padding: 0;
+  margin: 0;
+}
 
 .disc {
   position: absolute;
