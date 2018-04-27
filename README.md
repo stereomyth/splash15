@@ -2,7 +2,7 @@
 
 Box-filled fourty five maze faced landing zone.
 
-### TODO
+## TODO
 
 * resize watcher
 * rebuild on resize / button press
@@ -10,7 +10,7 @@ Box-filled fourty five maze faced landing zone.
 * other icons
 * crown logo
 
-### Ideas
+## Ideas
 
 * motion control
 * actual content
