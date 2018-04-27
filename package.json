@@ -33,14 +33,8 @@
       "browser": true
     },
     "rules": {
-      "quotes": [
-        "error",
-        "single"
-      ],
-      "comma-dangle": [
-        "error",
-        "always-multiline"
-      ]
+      "quotes": ["error", "single"],
+      "comma-dangle": ["error", "always-multiline"]
     }
   }
 }
