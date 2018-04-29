@@ -3,68 +3,65 @@
 
 class Splash {
   constructor() {
-    this.height = 0;
-    this.width = 0;
     this.lineNum = 16;
 
-    // this.init();
+    const hole = {
+      w: $('.hole').width(),
+      h: $('.hole').height(),
+    };
+
+    const grid = new Grid({ cell: 30, rotate: true }, hole);
   }
 
   init() {
-    this.getDimensions();
-
-    console.log('this.width: ', this.width);
-    var grid = new Grid(this.width, this.height);
-
-    this.lines = [];
-
-    var mid = Math.round(this.width / 2) - Math.floor(this.lineNum / 4);
-    var mid2 = Math.round(this.height / 2);
-
-    for (var i = 0; i < this.lineNum / 2; i++) {
-      this.lines.push(new Line(grid, { x: mid + i, y: mid2 }));
-    }
-
-    for (i = 0; i < this.lineNum / 2; i++) {
-      this.lines.push(new Line(grid, { x: mid + i, y: mid2 - 1 }));
-    }
-
-    for (i = 0; i < 250; i++) {
-      this.tick();
-    }
-    // grid.print();
-    this.draw();
-  }
-
-  getDimensions() {
-    const getDiag = (a, b) => Math.round(Math.sqrt(a * a + b * b));
-
-    this.win = {
-      width: $(window).width(),
-      height: $(window).height(),
-    };
-
-    this.win.diag = getDiag(this.win.width, this.win.height);
-
-    // $('.hole').css({
-    // height: this.win.diag,
-    // width: this.win.diag,
-    // 'margin-left': -this.win.diag / 2,
-    // 'margin-top': -(this.win.diag - this.win.height) / 2,
-    // });
-
-    // this.height = this.win.diag / 30;
-    // this.width = this.win.diag / 30;
-
-    this.height = this.width = 10;
-  }
-
-  tick() {
-    // for (var i = 0; i < this.lines.length; i++) {
-    // this.lines[i].move();
+    // this.getDimensions();
+    // console.log('this.gridConf: ', this.gridConf);
+    // const grid = new Grid(this.gridConf);
+    // this.lines = [];
+    // var mid = Math.round(this.width / 2) - Math.floor(this.lineNum / 4);
+    // var mid2 = Math.round(this.height / 2);
+    // for (var i = 0; i < this.lineNum / 2; i++) {
+    //   this.lines.push(new Line(grid, { x: mid + i, y: mid2 }));
     // }
-    this.lines.forEach(line => line.move());
+    // for (i = 0; i < this.lineNum / 2; i++) {
+    //   this.lines.push(new Line(grid, { x: mid + i, y: mid2 - 1 }));
+    // }
+    // for (i = 0; i < 250; i++) {
+    //   this.tick();
+    // }
+    // grid.print();
+    // this.draw();
   }
+
+  // getDimensions() {
+  //   const getDiag = (a, b) => Math.round(Math.sqrt(a * a + b * b));
+
+  //   this.win = {
+  //     width: $(window).width(),
+  //     height: $(window).height(),
+  //   };
+
+  //   this.win.diag = getDiag(this.win.width, this.win.height);
+
+  // $('.hole').css({
+  // height: this.win.diag,
+  // width: this.win.diag,
+  // 'margin-left': -this.win.diag / 2,
+  // 'margin-top': -(this.win.diag - this.win.height) / 2,
+  // });
+
+  // this.height = this.win.diag / 30;
+  // this.width = this.win.diag / 30;
+
+  //   this.height = this.width = 10;
+  // }
+
+  // tick() {
+  // for (var i = 0; i < this.lines.length; i++) {
+  // this.lines[i].move();
+  // }
+  // this.lines.forEach(line => line.move());
+  // }
 
   draw() {
     var hole = {
