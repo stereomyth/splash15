@@ -10,7 +10,23 @@ class Splash {
       h: $('.hole').height(),
     };
 
-    const grid = new Grid({ cell: 30, rotate: true }, hole);
+    this.grid = new Grid({ cell: 100, rotate: 1 }, hole);
+
+    this.listen();
+  }
+
+  listen() {
+    $(document).keypress(event => {
+      if (event.which == 114) {
+        this.refresh();
+      }
+    });
+  }
+
+  refresh() {
+    console.log('xxx');
+
+    this.grid.refresh();
   }
 
   init() {

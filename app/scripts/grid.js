@@ -1,16 +1,28 @@
 'use strict';
 
 class Grid {
-  constructor(conf, hole) {
+  constructor(conf) {
+    this.conf = conf;
     this.rotate = conf.rotate;
 
     const rotatedCell = this.rotateWidth(conf.cell);
 
-    let cell = this.rotate
+    this.cell = this.rotate
       ? { w: rotatedCell, h: rotatedCell / 2 }
       : { w: conf.cell, h: conf.cell };
 
-    cell.square = conf.cell;
+    this.cell.square = conf.cell;
+
+    this.init();
+  }
+
+  init() {
+    const cell = this.cell;
+
+    const hole = {
+      w: $('.hole').width(),
+      h: $('.hole').height(),
+    };
 
     let grid = {
       w: Math.floor(hole.w / cell.w),
@@ -77,9 +89,9 @@ class Grid {
       .append('g')
       .attr('class', 'row');
 
-    const cells = rows
-      .selectAll('.cell')
-      .data(d => d)
+    const cells = rows.selectAll('.cell').data(d => d);
+
+    cells
       .enter()
       .append('rect')
       .attr('class', 'cell')
@@ -88,12 +100,49 @@ class Grid {
       .attr('y', d => d.y + (cell.w - cell.square) / 2)
       .attr('x', d => d.x + (cell.w - cell.square) / 2);
 
+    cells
+      .style('opacity', 0)
+      .transition()
+      .duration(1000)
+      .delay((d, index) => index * 200)
+      .ease('linear')
+      .style('opacity', 1);
+
+    cells
+      .exit()
+      .style('opacity', 0)
+      .transition()
+      .duration(1000)
+      .delay((d, index) => index * 200)
+      .ease('linear')
+      .style('opacity', 1);
+
+    // cells
+    //   .exit()
+    //   .style('opacity', 1)
+    //   .transition()
+    //   .duration(1000)
+    //   .delay((d, index) => index * 200)
+    //   .ease('linear')
+    //   .style('opacity', 0);
+
     if (this.rotate) {
       cells.attr(
         'transform',
         d => `rotate(45 ${d.x + cell.w / 2}, ${d.y + cell.w / 2})`
       );
     }
+  }
+
+  refresh() {
+    d3
+      .select('.hole')
+      .selectAll('.row')
+      .remove();
+
+    // this.data = [];
+
+    this.init();
   }
 
   // query(pos) {
